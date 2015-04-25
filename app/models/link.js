@@ -2,20 +2,7 @@ var db = require('../config');
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 
-// var Link = db.Model.extend({
-//   tableName: 'urls',
-//   hasTimestamps: true,
-//   defaults: {
-//     visits: 0
-//   },
-//   initialize: function(){
-//     this.on('creating', function(model, attrs, options){
-//       var shasum = crypto.createHash('sha1');
-//       shasum.update(model.get('url'));
-//       model.set('code', shasum.digest('hex').slice(0, 5));
-//     });
-//   }
-// });
+// See user.js for Schema descriptions of functionality
 
 var Schema = mongoose.Schema;
 var urlSchema = new Schema({
@@ -23,14 +10,14 @@ var urlSchema = new Schema({
   base_url: String,
   code: String,
   title: String,
-  visits: Number,
+  visits: {type: Number, default: 0},
   createdAt: {type: Date, default: Date.now}
 });
 
 urlSchema.statics.shortenUrl = function(url, object){
       var shasum = crypto.createHash('sha1');
       shasum.update(url);
-      object['code'] = shasum.digest('hex').slice(0,5)
+      object.code = shasum.digest('hex').slice(0,5)
       // object.update({'code': {}}, shasum.digest('hex').slice(0, 5));
 };
 
