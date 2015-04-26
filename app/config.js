@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 require('./models/user');
 
-var mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost/shortly';
+var mongoURI = process.env.mongodb:MongoLab-7l:aqAlUM5jgiF.KqX8JBavwjJDuvWmP9YmuOifs_O3HBg-@ds034348.mongolab.com:34348/MongoLab-7l || 'mongodb://localhost/shortly';
 mongoose.connect(mongoURI)
 var db = mongoose.connection;
 
